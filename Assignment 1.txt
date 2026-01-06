@@ -1,0 +1,76 @@
+Q1.Identify at least 3 real-world applications and specify:
+                                                            * Which type of database they use (SQL / NoSQL / In-memory)
+                                                            * Why that database is suitable
+
+
+
+* Three real world applications as follow
+
+1.Instagram
+2.Amazon
+3.Uber
+
+* Type of the Database they use as follow
+
+1.Instagram --
+
+* Type of Database --
+
+  SQL: User accounts, relationships, metadata
+  NoSQL: Posts, likes, comments, feeds (huge scale, flexible data)
+  In-memory: Caching feeds, sessions, and fast lookups (e.g., Redis)
+
+  So, basically it uses All types of Database.
+
+* why that Database is suitable --
+
+  Instagram handles billions of users, posts, likes, and comments every day.
+
+  SQL databases -- are used for structured data such as user accounts and relationships because they ensure data consistency.
+  NoSQL databases -- are suitable for storing posts, comments, and feeds as they can scale easily with massive data growth.
+  In-memory databases -- are used for caching feeds and sessions to provide fast loading and real-time user experience.
+
+2.Amazon --
+  
+* Type of Database --
+
+  SQL: Orders, payments, transactions
+  NoSQL: Product catalogs, recommendations (e.g., DynamoDB)
+  In-memory: Shopping carts, session data, fast pricing lookups
+
+  Amazon, also uses all types of Database.
+
+* why that Database is suitable --
+
+  Amazon manages millions of products and transactions simultaneously.
+
+  SQL databases -- are used for orders, payments, and billing because they require high reliability and accuracy.
+  NoSQL databases -- store product catalogs and recommendations since they handle large volumes of flexible data efficiently.
+  In-memory databases -- are used for shopping carts and quick price lookups to reduce response time.
+
+3.Uber -- 
+
+* Type of Database --
+
+  SQL: Billing, trip history, user data.
+  NoSQL: Real-time location data, trip matching.
+  In-memory: Live driver/rider matching, ETA calculations.
+
+  Uber, also uses all types of Database.
+
+* why that Database is suitable --
+
+  Uber operates in real time and processes live location data.
+
+  SQL databases -- store user profiles, trip history, and payment records.
+  NoSQL databases -- are suitable for managing real-time location data and ride requests due to their high scalability.
+  In-memory databases -- enable fast driver-rider matching and real-time ETA calculations.
+
+  
+
+
+
+ 
+
+
+
