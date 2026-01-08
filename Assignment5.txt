@@ -1,0 +1,53 @@
+Assignment -- 5
+
+Q1.Given the table: 1.orders _id, user_id, status, created_at 
+   2.Suggest appropriate indexes 
+   3.Explain why you chose them
+
+
+
+2.Suggest appropriate indexes ----
+
+ I think there are four appropriate indexes for the above columns names 
+
+ a. Primary index on -- orders_id
+ b. Index on -- user_id
+ c. Composite Index on --- (user_id, created_at)
+ d. composite Index on --- (status, created_at)
+
+
+3.Explaination of choosing them ----
+
+ a. Primary index on -- orders_id -----
+    
+       Every order must be uniquely identifiable.
+
+       Ensures fast retrieval when searching by order ID.
+
+       Helps maintain data integrity by preventing duplicates.
+
+  b. Index on -- user_id -----
+ 
+       Orders are frequently fetched based on the user.
+
+       Improves performance when retrieving all orders placed by a specific user.
+
+       Optimizes joins between the orders table and the users table.
+   
+  a. Composite index on -- (user_id, created_at) -----
+ 
+       Useful when viewing a user’s order history in chronological order.
+
+       Supports both filtering by user and sorting by order creation time.
+
+       Reduces the need for additional sorting operations.
+
+  a. Composite index on -- (Status, created_at) -----
+ 
+       Helps in filtering orders based on their status (e.g., pending, shipped, delivered).
+
+       Efficient for reporting, analytics, and dashboard queries.
+
+       Optimizes time-based queries on order statuses.
+
+
