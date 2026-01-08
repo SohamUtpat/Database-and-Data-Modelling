@@ -1,0 +1,39 @@
+Assignment 6
+
+Q1.A query frequently runs:
+
+  SELECT * FROM bookings
+
+  WHERE doctor_id = ?
+
+  AND appointment_date >= ?
+
+  AND appointment_date <= ?;
+
+  Propose a composite index
+  Explain column order choice.
+
+
+2. Propose a composite index ---
+
+     A composite index on doctor_id and appointment_date, 
+     with doctor_id first and appointment_date second.
+
+
+3. Explanation of column order choice ---
+
+     a. doctor_id is placed first because :
+            
+                         It is used with an equality condition (=).
+
+                         Equality filters are most selective and should come first in a composite index.
+
+                         This allows the database to quickly narrow down records for a specific doctor.
+
+     b. appointment_date is placed second because : 
+
+                         It is used with a range condition (>= and <=).
+
+                         After filtering by doctor, the index efficiently scans only the required date range.
+
+                         This avoids scanning unnecessary rows.
