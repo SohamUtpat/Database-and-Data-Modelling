@@ -1,0 +1,61 @@
+Given the table:
+
+1.orders _id, user_id, status_created_at 
+
+2.Suggest appropriate indexes 
+
+3.Explain why you chose them
+
+
+
+
+Answers 
+
+
+1. Appropriate Indexes -------
+
+        1.Primary index on order_id
+
+        2.Index on user_id
+
+        3.Composite index on (user_id, created_at)
+
+        4.Composite index on (status, created_at)
+
+
+2. why choose them -----
+
+     1. Primary Index on order_id ----- 
+
+             1.Each order must be uniquely identifiable.
+
+             2.Provides very fast access when searching by order ID.
+
+             3.Ensures data integrity by preventing duplicate orders.
+
+    
+     2.Index on user_id -----
+
+             1.Orders are often retrieved per user.
+
+             2.Improves performance for queries that filter orders by a specific user.
+
+             3.Helps optimize joins between the orders table and a users table.
+
+
+     3.Composite Index on (user_id, created_at) -----
+
+             1.Supports queries that fetch a user’s order history.
+
+             2.Efficient when orders are displayed in chronological order.
+
+             3.Reduces sorting overhead by combining filtering and ordering.
+
+
+     4.Composite Index on (status, created_at) -----
+
+             1.Useful for filtering orders based on their status (e.g., pending, shipped).
+
+             2.Helps in generating reports and monitoring order progress.
+
+             3.Optimizes time-based queries on order status.
