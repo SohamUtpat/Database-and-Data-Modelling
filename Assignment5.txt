@@ -1,53 +1,65 @@
-Assignment -- 5
+1. Real-World System Where Soft Deletes Are Required
+Example: E-Commerce Platform (Amazon / Flipkart–like system)
 
-Q1.Given the table: 1.orders _id, user_id, status, created_at 
-   2.Suggest appropriate indexes 
-   3.Explain why you chose them
+Description:
+In an e-commerce system, users can delete products, orders, reviews, or even their accounts. However, deleting this data permanently is often not desirable immediately.
 
+Why Soft Deletes Are Required:
 
+    Audit & Compliance:
+    Orders and transactions must be preserved for legal, taxation, and auditing purposes.
 
-2.Suggest appropriate indexes ----
+    Data Recovery:
+    A seller may accidentally delete a product or listing and later want it restored.
 
- I think there are four appropriate indexes for the above columns names 
+    User Experience:
+    Deleted user accounts may be reactivated within a grace period.
 
- a. Primary index on -- orders_id
- b. Index on -- user_id
- c. Composite Index on --- (user_id, created_at)
- d. composite Index on --- (status, created_at)
+    Historical Records:
+    Sales reports, analytics, and customer behavior analysis depend on past data.
 
+    Referential Integrity:
+    Orders may reference users or products; soft delete avoids breaking relationships.
 
-3.Explaination of choosing them ----
+How It Works Conceptually:
 
- a. Primary index on -- orders_id -----
-    
-       Every order must be uniquely identifiable.
+    The record is marked as inactive or deleted instead of being removed.
 
-       Ensures fast retrieval when searching by order ID.
+    The data is hidden from normal users but still exists in the database.
 
-       Helps maintain data integrity by preventing duplicates.
+    Admins or systems can restore the data if needed.
 
-  b. Index on -- user_id -----
- 
-       Orders are frequently fetched based on the user.
+Conclusion:
+Soft deletes are essential when data recovery, auditing, and historical tracking are important.
 
-       Improves performance when retrieving all orders placed by a specific user.
+2. Real-World System Where Hard Deletes Are Preferred
+Example: Temporary Cache / Session Management System
 
-       Optimizes joins between the orders table and the users table.
-   
-  a. Composite index on -- (user_id, created_at) -----
- 
-       Useful when viewing a user’s order history in chronological order.
+Description:
+Systems like login sessions, OTP records, temporary tokens, or cache storage handle short-lived and non-critical data.
 
-       Supports both filtering by user and sorting by order creation time.
+Why Hard Deletes Are Preferred:
 
-       Reduces the need for additional sorting operations.
+   No Long-Term Value:
+   Once a session expires or an OTP is used, the data is useless.
 
-  a. Composite index on -- (Status, created_at) -----
- 
-       Helps in filtering orders based on their status (e.g., pending, shipped, delivered).
+   Performance Optimization:
+   Keeping unnecessary records increases storage and slows queries.
 
-       Efficient for reporting, analytics, and dashboard queries.
+   Security Reasons:
+   Sensitive data like tokens should be removed completely to avoid misuse.
 
-       Optimizes time-based queries on order statuses.
+   High Data Volume:
+   Temporary systems generate massive data continuously; soft deletes would waste space.
 
+   No Recovery Requirement:
+   Deleted data is never needed again.
 
+How It Works Conceptually:
+
+   Data is permanently removed once it expires or is invalid.
+
+   No restoration or historical tracking is required.
+
+Conclusion:
+   Hard deletes are best when data is temporary, sensitive, and irrelevant after use.
